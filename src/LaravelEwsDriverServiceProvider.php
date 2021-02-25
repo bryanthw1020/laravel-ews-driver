@@ -24,7 +24,7 @@ class ExchangeServiceProvider extends MailServiceProvider
                 $host = $config['host'];
                 $username = $config['username'];
                 $password = $config['password'];
-                $messageDispositionType = $config['messageDispositionType'] || MessageDispositionType::SEND_AND_SAVE_COPY;
+                $messageDispositionType = $config['messageDispositionType'] ?? MessageDispositionType::SEND_AND_SAVE_COPY;
 
                 return new ExchangeTransport($host, $username, $password, $messageDispositionType);
             });
