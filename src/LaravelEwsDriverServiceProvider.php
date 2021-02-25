@@ -7,7 +7,7 @@ use Illuminate\Mail\MailManager;
 use Illuminate\Mail\MailServiceProvider;
 use jamesiarmes\PhpEws\Enumeration\MessageDispositionType;
 
-class ExchangeServiceProvider extends MailServiceProvider
+class LaravelEwsDriverServiceProvider extends MailServiceProvider
 {
     /**
      * Register the Swift Transport instance.
