@@ -1,31 +1,29 @@
 <?php
 
-namespace Adeboyed\LaravelExchangeDriver\Transport;
+namespace Bryanthw1020\LaravelEwsDriver\Transport;
 
 use Illuminate\Mail\Transport\Transport;
+use jamesiarmes\PhpEws\ArrayType\ArrayOfRecipientsType;
+use jamesiarmes\PhpEws\ArrayType\NonEmptyArrayOfAllItemsType;
+use jamesiarmes\PhpEws\Client;
+use jamesiarmes\PhpEws\Enumeration\BodyTypeType;
+use jamesiarmes\PhpEws\Enumeration\ResponseClassType;
+use jamesiarmes\PhpEws\Request\CreateItemType;
+use jamesiarmes\PhpEws\Type\BodyType;
+use jamesiarmes\PhpEws\Type\EmailAddressType;
+use jamesiarmes\PhpEws\Type\MessageType;
+use jamesiarmes\PhpEws\Type\SingleRecipientType;
 use Swift_Mime_SimpleMessage;
-
-use \jamesiarmes\PhpEws\Client;
-use \jamesiarmes\PhpEws\Request\CreateItemType;
-
-use \jamesiarmes\PhpEws\ArrayType\ArrayOfRecipientsType;
-use \jamesiarmes\PhpEws\ArrayType\NonEmptyArrayOfAllItemsType;
-
-use \jamesiarmes\PhpEws\Enumeration\BodyTypeType;
-use \jamesiarmes\PhpEws\Enumeration\ResponseClassType;
-
-use \jamesiarmes\PhpEws\Type\BodyType;
-use \jamesiarmes\PhpEws\Type\EmailAddressType;
-use \jamesiarmes\PhpEws\Type\MessageType;
-use \jamesiarmes\PhpEws\Type\SingleRecipientType;
 
 
 class ExchangeTransport extends Transport
 {
-
     protected $host;
+
     protected $username;
+
     protected $password;
+
     protected $messageDispositionType;
 
     public function __construct($host, $username, $password, $messageDispositionType)
@@ -92,7 +90,6 @@ class ExchangeTransport extends Transport
                 continue;
             }
         }
-
 
         $this->sendPerformed($simpleMessage);
 

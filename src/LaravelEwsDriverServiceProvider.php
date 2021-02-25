@@ -1,15 +1,13 @@
 <?php
 
-namespace Adeboyed\LaravelExchangeDriver;
+namespace Bryanthw1020\LaravelEwsDriver;
 
+use Bryanthw1020\LaravelEwsDriver\Transport\ExchangeTransport;
 use Illuminate\Mail\MailManager;
-use Illuminate\Support\ServiceProvider;
-use \jamesiarmes\PhpEws\Enumeration\MessageDispositionType;
+use Illuminate\Mail\MailServiceProvider;
+use jamesiarmes\PhpEws\Enumeration\MessageDispositionType;
 
-use Adeboyed\LaravelExchangeDriver\Transport\ExchangeTransport;
-
-
-class ExchangeAddedServiceProvider extends ServiceProvider
+class ExchangeServiceProvider extends MailServiceProvider
 {
     /**
      * Register the Swift Transport instance.
@@ -18,6 +16,8 @@ class ExchangeAddedServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        parent::register();
+
         $this->app->afterResolving(MailManager::class, function (MailManager $mail_manager) {
             $mail_manager->extend("exchange", function ($config) {
                 $config = $this->app['config']->get('mail.mailers.exchange', []);
