@@ -102,7 +102,7 @@ class ExchangeTransport extends Transport
 
         foreach ($responseMessages as $responseMessage) {
             if ($responseMessage->ResponseClass !== ResponseClassType::SUCCESS) {
-                throw new EwsException($responseMessage->MessageText, $responseMessage->ResponseCode);
+                throw new EwsException($responseMessage->MessageText);
             }
         }
 
@@ -129,6 +129,7 @@ class ExchangeTransport extends Transport
         $message->From = new SingleRecipientType();
         $message->From->Mailbox = new EmailAddressType();
         $message->From->Mailbox->EmailAddress = config('mail.from.address');
+        $message->From->Mailbox->Name = config('mail.from.name');
 
         // Set the to recipient.
         foreach ($simpleMessage->getTo() as $email => $name) {
@@ -209,7 +210,7 @@ class ExchangeTransport extends Transport
 
         foreach ($responseMessages as $responseMessage) {
             if ($responseMessage->ResponseClass !== ResponseClassType::SUCCESS) {
-                throw new EwsException($responseMessage->MessageText, $responseMessage->ResponseCode);
+                throw new EwsException($responseMessage->MessageText);
             }
 
             foreach ($responseMessage->Items->Message as $item) {
@@ -247,7 +248,7 @@ class ExchangeTransport extends Transport
 
         foreach ($responseMessages as $responseMessage) {
             if ($responseMessage->ResponseClass !== ResponseClassType::SUCCESS) {
-                throw new EwsException($responseMessage->MessageText, $responseMessage->ResponseCode);
+                throw new EwsException($responseMessage->MessageText);
             }
 
             foreach ($responseMessage->Attachments->FileAttachment as $attachment) {
