@@ -5,7 +5,6 @@ namespace Bryanthw1020\LaravelEwsDriver;
 use Bryanthw1020\LaravelEwsDriver\Transport\ExchangeTransport;
 use Illuminate\Mail\MailManager;
 use Illuminate\Mail\MailServiceProvider;
-use jamesiarmes\PhpEws\Enumeration\MessageDispositionType;
 
 class LaravelEwsDriverServiceProvider extends MailServiceProvider
 {
@@ -24,9 +23,8 @@ class LaravelEwsDriverServiceProvider extends MailServiceProvider
                 $host = $config['host'];
                 $username = $config['username'];
                 $password = $config['password'];
-                $messageDispositionType = $config['messageDispositionType'] ?? MessageDispositionType::SEND_AND_SAVE_COPY;
 
-                return new ExchangeTransport($host, $username, $password, $messageDispositionType);
+                return new ExchangeTransport($host, $username, $password);
             });
         });
     }
